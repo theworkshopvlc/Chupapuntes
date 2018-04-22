@@ -12,5 +12,4 @@ class ChupapuntesApplicationTests {
   @Test
   fun contextLoads() {
   }
-
 }
