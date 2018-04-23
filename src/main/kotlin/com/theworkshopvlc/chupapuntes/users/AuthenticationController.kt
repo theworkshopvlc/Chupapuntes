@@ -1,6 +1,6 @@
 package com.theworkshopvlc.chupapuntes.users
 
-import com.theworkshopvlc.chupapuntes.users.model.User
+import com.theworkshopvlc.chupapuntes.users.model.entities.User
 import com.theworkshopvlc.chupapuntes.users.persistence.IUserDAO
 import com.theworkshopvlc.chupapuntes.users.security.TokenHelper
 import org.springframework.context.annotation.Bean
