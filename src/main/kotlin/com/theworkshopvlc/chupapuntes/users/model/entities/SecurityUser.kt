@@ -24,6 +24,3 @@ class SecurityUser(
   override fun getPassword(): String = password
 }
 
-class Authority(val id: Long = 0, val name: String) : GrantedAuthority {
-  override fun getAuthority(): String = name
-}

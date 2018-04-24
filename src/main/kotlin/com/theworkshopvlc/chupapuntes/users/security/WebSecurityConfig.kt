@@ -21,7 +21,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 @EnableGlobalMethodSecurity(prePostEnabled = true)
 class WebSecurityConfig(
   private val userDetailsService: CustomUserDetailsService,
-  private val tokenHelper: TokenHelper
+  private val tokenHelper: TokenHelper,
+  private val unauthorizedHandler: JwtAuthenticationEntryPoint
 ) : WebSecurityConfigurerAdapter() {
 
   @Bean
@@ -47,6 +48,7 @@ class WebSecurityConfig(
       .anyRequest().authenticated().and()
       .addFilterBefore(TokenAuthenticationFilter(tokenHelper, userDetailsService),
         UsernamePasswordAuthenticationFilter::class.java)
+      .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
   }
 
 }
