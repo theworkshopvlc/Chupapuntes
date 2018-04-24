@@ -24,5 +24,4 @@ class TokenAuthenticationFilter(
 
     filterChain.doFilter(request, response)
   }
-
 }

@@ -5,7 +5,7 @@ import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
 import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.Date
 import javax.servlet.http.HttpServletRequest
 
 @Component
@@ -72,5 +72,4 @@ class TokenHelper(private val userDetailsService: UserDetailsService) {
 
   private fun generateCurrentDate() = Date(System.currentTimeMillis())
   private fun generateExpirationDate() = Date(System.currentTimeMillis() + EXPIRES_IN * 1000)
-
 }

@@ -44,5 +44,4 @@ class AuthenticationController(
 
     return ResponseEntity.ok().body("User ${user.username} created")
   }
-
 }

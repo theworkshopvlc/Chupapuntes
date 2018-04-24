@@ -23,4 +23,3 @@ class SecurityUser(
 
   override fun getPassword(): String = password
 }
-
