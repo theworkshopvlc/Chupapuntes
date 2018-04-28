@@ -1,7 +1,7 @@
 package com.theworkshopvlc.chupapuntes.categories.domain.usecases
 
-import com.theworkshopvlc.chupapuntes.categories.persistence.CategoriesDAO
+import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 
-class GetByTitle(private val dao: CategoriesDAO) {
-  fun execute(query: String) = dao.findByTitle(query)
+class GetByTitle(private val daoI: ICategoriesDAO) {
+  fun execute(query: String) = daoI.findByTitle(query)
 }
