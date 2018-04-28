@@ -3,13 +3,12 @@ package com.theworkshopvlc.chupapuntes.users.security
 import io.jsonwebtoken.Claims
 import io.jsonwebtoken.Jwts
 import io.jsonwebtoken.SignatureAlgorithm
-import org.springframework.security.core.userdetails.UserDetailsService
 import org.springframework.stereotype.Component
-import java.util.Date
+import java.util.*
 import javax.servlet.http.HttpServletRequest
 
 @Component
-class TokenHelper(private val userDetailsService: UserDetailsService) {
+class TokenHelper(private val userDetailsService: CustomUserDetailsService) {
 
   companion object {
     val APP_NAME = "chupapuntes"
