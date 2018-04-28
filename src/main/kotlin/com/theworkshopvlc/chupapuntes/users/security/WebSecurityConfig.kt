@@ -42,13 +42,14 @@ class WebSecurityConfig(
   override fun configure(http: HttpSecurity) {
     http
       .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
-      .cors().and()
-      .csrf().disable()
-      .authorizeRequests().antMatchers("/auth/**").permitAll()
+      .authorizeRequests()
+      .antMatchers("/auth/**").permitAll()
       .antMatchers(HttpMethod.OPTIONS, "/**").permitAll()
-      .anyRequest().authenticated().and()
+      .anyRequest().authenticated()
+      .and()
       .addFilterBefore(TokenAuthenticationFilter(tokenHelper, userDetailsService),
         UsernamePasswordAuthenticationFilter::class.java)
+      .csrf().disable()
       .exceptionHandling().authenticationEntryPoint(unauthorizedHandler)
   }
 }

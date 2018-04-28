@@ -9,4 +9,5 @@ class TokenBasedAuthentication(
 ) : AbstractAuthenticationToken(userDetails.authorities) {
   override fun getCredentials() = token
   override fun getPrincipal() = userDetails
+  override fun isAuthenticated(): Boolean = true
 }
