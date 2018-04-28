@@ -7,6 +7,5 @@ import javax.persistence.*
 data class Category(
   @Id @GeneratedValue(strategy = GenerationType.AUTO)
   val id: Long = 0,
-
   val title: String = "Hola"
 )
