@@ -1,7 +1,7 @@
 package com.theworkshopvlc.chupapuntes.users.security
 
 import org.springframework.stereotype.Component
-import java.util.*
+import java.util.Date
 import javax.servlet.http.HttpServletRequest
 
 @Component
