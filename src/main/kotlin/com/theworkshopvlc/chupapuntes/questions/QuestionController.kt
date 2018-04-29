@@ -13,5 +13,4 @@ class QuestionController(private val getAllQuestions: GetAllQuestions) {
   @GetMapping
   fun getAll(): List<Question> =
     getAllQuestions.execute()
-
 }
