@@ -1,4 +1,4 @@
-package com.theworkshopvlc.chupapuntes.questions.model
+package com.theworkshopvlc.chupapuntes.questions.model.entities
 
 import javax.persistence.Entity
 import javax.persistence.GeneratedValue
