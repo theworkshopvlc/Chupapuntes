@@ -16,5 +16,4 @@ class CategoriesController(private val getAllCategories: GetAllCategories) {
   fun getAll(): List<Category> {
     return getAllCategories.execute()
   }
-
 }

@@ -15,4 +15,3 @@ class WebConfig(private val env: Environment) : WebMvcConfigurerAdapter() {
       .allowedMethods("GET", "POST", "PUT", "DELETE")
   }
 }
-
