@@ -10,4 +10,3 @@ fun Question.toResponse(): QuestionResponse =
     createdAt = this.createdAt,
     id = this.id
   )
-

@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/categories")
-class CategoriesController(private val getAllCategories: GetAllCategories,
-                           private val getCategoriesByTitle: GetCategoriesByTitle) {
+class CategoriesController(
+  private val getAllCategories: GetAllCategories,
+  private val getCategoriesByTitle: GetCategoriesByTitle
+) {
 
   @GetMapping("/index")
   @PreAuthorize("hasAnyAuthority('USER')")
@@ -24,5 +26,4 @@ class CategoriesController(private val getAllCategories: GetAllCategories,
   fun getByTitle(@RequestParam("title") query: String): List<Category> {
     return getCategoriesByTitle.execute(query)
   }
-
 }

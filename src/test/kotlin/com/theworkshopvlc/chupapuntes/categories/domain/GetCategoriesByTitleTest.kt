@@ -34,5 +34,4 @@ class GetCategoriesByTitleTest {
     listOf(
       Category(0, emptySet(), "Simple Maths")
     )
-
 }
