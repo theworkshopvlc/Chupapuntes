@@ -1,11 +1,12 @@
 package com.theworkshopvlc.chupapuntes.categories.domain
 
+import com.theworkshopvlc.chupapuntes.categories.domain.entities.Category
 import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 
 import org.junit.Test
 import org.mockito.Mockito
 
-class CategoryGetByTitleTest {
+class GetCategoriesByTitleTest {
   var mockedDAO = Mockito.mock(ICategoriesDAO::class.java)
 
   @Test
@@ -23,7 +24,15 @@ class CategoryGetByTitleTest {
     Mockito.`when`(mockedDAO.findByTitle("Simple")).thenReturn(singleReturn())
   }
 
-  fun multipleResult(): List<Category> = listOf(Category(0, "Maths"), Category(0, "Simple Maths"))
-  fun singleReturn(): List<Category> = listOf(Category(0, "Simple Maths"))
+  fun multipleResult(): List<Category> =
+    listOf(
+      Category(0, emptySet(), "Maths"),
+      Category(0, emptySet(), "Simple Maths")
+    )
+
+  fun singleReturn(): List<Category> =
+    listOf(
+      Category(0, emptySet(), "Simple Maths")
+    )
 
 }
