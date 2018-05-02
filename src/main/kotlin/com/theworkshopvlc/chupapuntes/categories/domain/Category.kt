@@ -1,6 +1,8 @@
 package com.theworkshopvlc.chupapuntes.categories.domain
 
-import javax.persistence.*
+import javax.persistence.GenerationType
+import javax.persistence.Id
+import javax.persistence.Table
 
 @Entity
 @Table(name = "Categories")
