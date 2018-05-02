@@ -4,6 +4,6 @@ import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 import org.springframework.stereotype.Component
 
 @Component
-class GetAllCategories(private val daoI: ICategoriesDAO) {
-  fun execute() = daoI.findAll().toList()
+class GetAllCategories(private val dao: ICategoriesDAO) {
+  fun execute() = dao.findAll().toList()
 }
