@@ -20,7 +20,7 @@ class CategoriesController(private val getAllCategories: GetAllCategories,
     return getAllCategories.execute()
   }
 
-  @GetMapping("/getByTitle")
+  @GetMapping
   fun getByTitle(@RequestParam("title") query: String): List<Category> {
     return getByTitle.execute(query)
   }
