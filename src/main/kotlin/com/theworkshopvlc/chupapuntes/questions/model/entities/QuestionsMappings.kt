@@ -10,3 +10,9 @@ fun Question.toResponse(): QuestionResponse =
     createdAt = this.createdAt,
     id = this.id
   )
+
+fun QuestionRequest.toEntity(): Question =
+  Question(
+    title = this.title,
+    description = this.description
+  )
