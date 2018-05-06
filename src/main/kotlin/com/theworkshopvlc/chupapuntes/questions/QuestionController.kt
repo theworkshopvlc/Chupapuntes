@@ -32,8 +32,10 @@ class QuestionController(
 
   @GetMapping
   @ApiOperation(value = "List all Questions")
-  fun index(@RequestParam("page") page: Int,
-            @RequestParam("page_size") pageSize: Int?): Page<QuestionResponse> =
+  fun index(
+    @RequestParam("page") page: Int,
+    @RequestParam("page_size") pageSize: Int?
+  ): Page<QuestionResponse> =
     getAllQuestions.execute(page, pageSize ?: 10)
       .map(Question::toResponse)
 

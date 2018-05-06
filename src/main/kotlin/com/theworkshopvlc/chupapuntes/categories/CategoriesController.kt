@@ -32,16 +32,20 @@ class CategoriesController(
 
   @GetMapping
   @ApiOperation(value = "List all Categories")
-  fun index(@RequestParam("page") page: Int,
-            @RequestParam("page_size") pageSize: Int?): Page<CategoryResponse> =
+  fun index(
+    @RequestParam("page") page: Int,
+    @RequestParam("page_size") pageSize: Int?
+  ): Page<CategoryResponse> =
     getAllCategories.execute(page, pageSize ?: 10)
       .map(Category::toResponse)
 
   @GetMapping("/search")
   @ApiOperation(value = "Full text search of Categories by Title")
-  fun searchByTitle(@RequestParam("title") title: String,
-                    @RequestParam("page") page: Int,
-                    @RequestParam("page_size") pageSize: Int?): Page<CategoryResponse> =
+  fun searchByTitle(
+    @RequestParam("title") title: String,
+    @RequestParam("page") page: Int,
+    @RequestParam("page_size") pageSize: Int?
+  ): Page<CategoryResponse> =
     searchCategoriesByTitle.execute(title, page, pageSize ?: 10)
       .map(Category::toResponse)
 
