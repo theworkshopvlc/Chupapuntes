@@ -7,6 +7,10 @@ import com.theworkshopvlc.chupapuntes.questions.model.entities.QuestionResponse
 import com.theworkshopvlc.chupapuntes.questions.model.entities.toResponse
 import com.theworkshopvlc.chupapuntes.questions.model.usecases.CreateQuestion
 import com.theworkshopvlc.chupapuntes.questions.model.usecases.GetAllQuestions
+import io.swagger.annotations.Api
+import io.swagger.annotations.ApiOperation
+import io.swagger.annotations.ApiResponse
+import io.swagger.annotations.ApiResponses
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -18,17 +22,24 @@ import java.security.Principal
 
 @RestController
 @RequestMapping("/questions")
+@Api(value = "questions", description = "Endpoints for Questions resource")
 class QuestionController(
   private val getAllQuestions: GetAllQuestions,
   private val createQuestion: CreateQuestion
 ) {
 
   @GetMapping
+  @ApiOperation(value = "List all Questions")
   fun index(): List<QuestionResponse> =
     getAllQuestions.execute()
       .map(Question::toResponse)
 
   @PostMapping
+  @ApiOperation(value = "Create a new Question")
+  @ApiResponses(value = [
+    ApiResponse(code = 201, message = "Created correctly", response = QuestionResponse::class),
+    ApiResponse(code = 400, message = "Error responses can be found in `QuestionValidationsResults`")
+  ])
   fun newQuestion(
     @RequestBody question: QuestionRequest,
     principal: Principal
