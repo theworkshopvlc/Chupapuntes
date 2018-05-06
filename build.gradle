@@ -62,6 +62,8 @@ dependencies {
   testCompile('org.springframework.security:spring-security-test')
 
   ktlint "com.github.shyiko:ktlint:0.20.0"
+
+  compile group: 'org.apache.commons', name: 'commons-lang3', version: '3.7'
 }
 
 task ktlint(type: JavaExec, group: "verification") {
