@@ -11,6 +11,7 @@ import com.theworkshopvlc.chupapuntes.categories.domain.usecases.SearchCategorie
 import io.swagger.annotations.Api
 import io.swagger.annotations.ApiOperation
 import io.swagger.annotations.ApiResponse
+import org.springframework.data.domain.Page
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
@@ -31,14 +32,17 @@ class CategoriesController(
 
   @GetMapping
   @ApiOperation(value = "List all Categories")
-  fun index(): List<CategoryResponse> =
-    getAllCategories.execute()
+  fun index(@RequestParam("page") page: Int,
+            @RequestParam("page_size") pageSize: Int?): Page<CategoryResponse> =
+    getAllCategories.execute(page, pageSize ?: 10)
       .map(Category::toResponse)
 
   @GetMapping("/search")
   @ApiOperation(value = "Full text search of Categories by Title")
-  fun searchByTitle(@RequestParam("title") title: String): List<CategoryResponse> =
-    searchCategoriesByTitle.execute(title)
+  fun searchByTitle(@RequestParam("title") title: String,
+                    @RequestParam("page") page: Int,
+                    @RequestParam("page_size") pageSize: Int?): Page<CategoryResponse> =
+    searchCategoriesByTitle.execute(title, page, pageSize ?: 10)
       .map(Category::toResponse)
 
   @PostMapping
