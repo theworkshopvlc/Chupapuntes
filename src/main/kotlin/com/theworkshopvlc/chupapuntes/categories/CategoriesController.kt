@@ -14,15 +14,11 @@ import org.springframework.web.bind.annotation.RestController
 class CategoriesController(private val getAllCategories: GetAllCategories,
                            private val getByTitle: GetByTitle) {
 
-  @GetMapping("/index")
-  @PreAuthorize("hasAnyAuthority('USER')")
-  fun getAll(): List<Category> {
-    return getAllCategories.execute()
-  }
-
   @GetMapping
-  fun getByTitle(@RequestParam("title") query: String): List<Category> {
-    return getByTitle.execute(query)
+  @PreAuthorize("hasAnyAuthority('USER')")
+  fun index(@RequestParam("title") title: String?): List<Category> = when {
+    title != null -> getByTitle.execute(title)
+    else -> getAllCategories.execute()
   }
 
 }
