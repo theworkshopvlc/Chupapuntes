@@ -7,5 +7,6 @@ import org.springframework.stereotype.Component
 
 @Component
 class SearchCategoriesByTitle(private val dao: ICategoriesDAO) {
-  fun execute(query: String) = dao.searchByTitle(query.toLowerCase().toSnakeCase().stripAccents())
+  fun execute(query: String) =
+    dao.searchByTitle(query.toLowerCase().toSnakeCase().stripAccents())
 }

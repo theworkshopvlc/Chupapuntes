@@ -20,4 +20,8 @@ data class Question(
   val categories: Set<Category> = emptySet(),
 
   val createdAt: Long = System.currentTimeMillis()
-)
+) {
+  companion object {
+    const val MAX_TITLE_LENGTH = 120
+  }
+}
