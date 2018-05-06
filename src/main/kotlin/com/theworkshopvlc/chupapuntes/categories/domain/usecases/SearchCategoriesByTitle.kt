@@ -6,6 +6,6 @@ import com.theworkshopvlc.chupapuntes.extensions.toSnakeCase
 import org.springframework.stereotype.Component
 
 @Component
-class SearchByTitle(private val dao: ICategoriesDAO) {
+class SearchCategoriesByTitle(private val dao: ICategoriesDAO) {
   fun execute(query: String) = dao.searchByTitle(query.toLowerCase().toSnakeCase().stripAccents())
 }

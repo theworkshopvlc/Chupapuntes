@@ -1,5 +1,6 @@
 package com.theworkshopvlc.chupapuntes.categories.domain
 
+import com.theworkshopvlc.chupapuntes.categories.domain.entities.Category
 import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 import org.hamcrest.CoreMatchers.`is`
 import org.hamcrest.MatcherAssert.assertThat
@@ -8,7 +9,7 @@ import org.junit.Test
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
 
-class CategorySearchByTitleTest {
+class SearchCategoriesByTitleTest {
   var mockedDAO = Mockito.mock(ICategoriesDAO::class.java)
 
   @Test
