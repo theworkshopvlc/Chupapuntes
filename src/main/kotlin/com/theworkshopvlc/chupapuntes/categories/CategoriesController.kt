@@ -11,8 +11,10 @@ import org.springframework.web.bind.annotation.RestController
 
 @RestController
 @RequestMapping("/categories")
-class CategoriesController(private val getAllCategories: GetAllCategories,
-                           private val searchByTitle: SearchByTitle) {
+class CategoriesController(
+  private val getAllCategories: GetAllCategories,
+  private val searchByTitle: SearchByTitle
+) {
 
   @GetMapping
   @PreAuthorize("hasAnyAuthority('USER')")
@@ -20,5 +22,4 @@ class CategoriesController(private val getAllCategories: GetAllCategories,
     title != null -> searchByTitle.execute(title)
     else -> getAllCategories.execute()
   }
-
 }

@@ -14,5 +14,4 @@ class StringExtensionsTest {
 
     assertEquals(expected, result)
   }
-
 }

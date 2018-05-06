@@ -38,5 +38,4 @@ class CategorySearchByTitleTest {
 
   fun multipleResult(): List<Category> = listOf(Category(0, "Maths"), Category(0, "Simple Maths"))
   fun singleReturn(): List<Category> = listOf(Category(0, "Simple Maths"))
-
 }
