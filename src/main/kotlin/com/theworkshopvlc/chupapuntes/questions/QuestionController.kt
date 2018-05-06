@@ -1,6 +1,6 @@
 package com.theworkshopvlc.chupapuntes.questions
 
-import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationsResults
+import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationResults
 import com.theworkshopvlc.chupapuntes.questions.model.entities.Question
 import com.theworkshopvlc.chupapuntes.questions.model.entities.QuestionRequest
 import com.theworkshopvlc.chupapuntes.questions.model.entities.QuestionResponse
@@ -38,7 +38,7 @@ class QuestionController(
   @ApiOperation(value = "Create a new Question")
   @ApiResponses(value = [
     ApiResponse(code = 201, message = "Created correctly", response = QuestionResponse::class),
-    ApiResponse(code = 400, message = "Error responses can be found in `QuestionValidationsResults`")
+    ApiResponse(code = 400, message = "Error responses can be found in `QuestionValidationResults`")
   ])
   fun newQuestion(
     @RequestBody question: QuestionRequest,
@@ -46,7 +46,7 @@ class QuestionController(
   ): ResponseEntity<*> {
     val result = createQuestion.execute(question, principal)
     return when (result) {
-      is QuestionValidationsResults.Success -> ResponseEntity
+      is QuestionValidationResults.Success -> ResponseEntity
         .status(HttpStatus.CREATED)
         .body(result.question.toResponse())
 

@@ -1,6 +1,6 @@
 package com.theworkshopvlc.chupapuntes.questions.model.usecases
 
-import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationsResults
+import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationResults
 import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 import com.theworkshopvlc.chupapuntes.extensions.anyIsNull
 import com.theworkshopvlc.chupapuntes.questions.model.entities.Question
@@ -18,15 +18,15 @@ class CreateQuestion(
   private val userDao: IUserDAO
 ) {
 
-  fun execute(question: QuestionRequest, principal: Principal): QuestionValidationsResults {
+  fun execute(question: QuestionRequest, principal: Principal): QuestionValidationResults {
     val questionEntity = question.toEntity()
     val validationResult = validateQuestion(questionEntity)
 
-    if (validationResult is QuestionValidationsResults.Success) {
+    if (validationResult is QuestionValidationResults.Success) {
       val categories = question.categories.map { categoryDao.findBySearchTitle(it) }
 
       if (categories.anyIsNull())
-        return QuestionValidationsResults.CategoryNotFoundError()
+        return QuestionValidationResults.CategoryNotFoundError
 
       val questionEntityWithCategories = validationResult.question
         .copy(
@@ -35,16 +35,16 @@ class CreateQuestion(
         )
       dao.save(questionEntityWithCategories)
 
-      return QuestionValidationsResults.Success(questionEntityWithCategories)
+      return QuestionValidationResults.Success(questionEntityWithCategories)
     }
 
     return validationResult
   }
 
-  private fun validateQuestion(question: Question): QuestionValidationsResults = when {
-    question.title.isEmpty() -> QuestionValidationsResults.EmptyTitleError()
-    question.description.isEmpty() -> QuestionValidationsResults.EmptyDescriptionError()
-    question.title.length > Question.MAX_TITLE_LENGTH -> QuestionValidationsResults.BigTitleError()
-    else -> QuestionValidationsResults.Success(question)
+  private fun validateQuestion(question: Question): QuestionValidationResults = when {
+    question.title.isEmpty() -> QuestionValidationResults.EmptyTitleError
+    question.description.isEmpty() -> QuestionValidationResults.EmptyDescriptionError
+    question.title.length > Question.MAX_TITLE_LENGTH -> QuestionValidationResults.BigTitleError
+    else -> QuestionValidationResults.Success(question)
   }
 }
