@@ -5,5 +5,7 @@ data class QuestionResponse(
   val question: String,
   val categories: Set<String>,
   val createdAt: Long,
+  val authorId: Long,
+  val author: String,
   val id: Long
 )

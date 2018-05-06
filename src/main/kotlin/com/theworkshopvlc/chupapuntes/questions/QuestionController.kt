@@ -14,11 +14,14 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.security.Principal
 
 @RestController
 @RequestMapping("/questions")
-class QuestionController(private val getAllQuestions: GetAllQuestions,
-                         private val createQuestion: CreateQuestion) {
+class QuestionController(
+  private val getAllQuestions: GetAllQuestions,
+  private val createQuestion: CreateQuestion
+) {
 
   @GetMapping
   fun index(): List<QuestionResponse> =
@@ -26,8 +29,11 @@ class QuestionController(private val getAllQuestions: GetAllQuestions,
       .map(Question::toResponse)
 
   @PostMapping
-  fun newQuestion(@RequestBody question: QuestionRequest): ResponseEntity<*> {
-    val result = createQuestion.execute(question)
+  fun newQuestion(
+    @RequestBody question: QuestionRequest,
+    principal: Principal
+  ): ResponseEntity<*> {
+    val result = createQuestion.execute(question, principal)
     return when (result) {
       is QuestionValidationsResults.Success -> ResponseEntity
         .status(HttpStatus.CREATED)

@@ -8,6 +8,8 @@ fun Question.toResponse(): QuestionResponse =
     question = this.description,
     categories = this.categories.map(Category::title).toSet(),
     createdAt = this.createdAt,
+    authorId = this.author.uid,
+    author = this.author.username,
     id = this.id
   )
 
