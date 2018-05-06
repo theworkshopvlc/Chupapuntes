@@ -10,13 +10,13 @@ import javax.persistence.ManyToMany
 @Entity
 data class Question(
   @Id @GeneratedValue(strategy = GenerationType.AUTO)
-  val id: Long,
+  val id: Long = 0,
 
-  val title: String,
+  val title: String = "",
 
-  val description: String,
+  val description: String = "",
 
-  @ManyToMany(mappedBy = "categories")
+  @ManyToMany(mappedBy = "questions")
   val categories: Set<Category> = emptySet(),
 
   val createdAt: Long = System.currentTimeMillis()
