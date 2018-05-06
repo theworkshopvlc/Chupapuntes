@@ -20,7 +20,7 @@ data class Question(
 
   val description: String = "",
 
-  @ManyToMany(mappedBy = "questions")
+  @ManyToMany(mappedBy = "questions", fetch = FetchType.EAGER)
   val categories: Set<Category> = emptySet(),
 
   @ManyToOne(fetch = FetchType.LAZY)
