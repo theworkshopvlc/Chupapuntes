@@ -12,8 +12,8 @@ sealed class QuestionValidationsResults(val error: String) {
   }
 
   class Success(val question: Question) : QuestionValidationsResults("")
-  class EmptyTitleError(error: String = EMPTY_TITLE_ERROR) : QuestionValidationsResults(error)
-  class EmptyDescriptionError(error: String = EMPTY_DESCRIPTION_ERROR) : QuestionValidationsResults(error)
-  class BigTitleError(error: String = BIG_TITLE_ERROR) : QuestionValidationsResults(error)
-  class CategoryNotFoundError(error: String = CATEGORY_NOT_FOUND) : QuestionValidationsResults(error)
+  object EmptyTitleError : QuestionValidationsResults(EMPTY_TITLE_ERROR)
+  object EmptyDescriptionError : QuestionValidationsResults(EMPTY_DESCRIPTION_ERROR)
+  object BigTitleError : QuestionValidationsResults(BIG_TITLE_ERROR)
+  object CategoryNotFoundError : QuestionValidationsResults(CATEGORY_NOT_FOUND)
 }
