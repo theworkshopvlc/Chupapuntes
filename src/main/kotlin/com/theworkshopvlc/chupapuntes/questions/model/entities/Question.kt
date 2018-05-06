@@ -1,6 +1,8 @@
 package com.theworkshopvlc.chupapuntes.questions.model.entities
 
 import com.theworkshopvlc.chupapuntes.categories.domain.entities.Category
+import com.theworkshopvlc.chupapuntes.extensions.stripAccents
+import com.theworkshopvlc.chupapuntes.extensions.toSnakeCase
 import com.theworkshopvlc.chupapuntes.users.model.entities.User
 import javax.persistence.Entity
 import javax.persistence.FetchType
@@ -17,6 +19,8 @@ data class Question(
   val id: Long = 0,
 
   val title: String = "",
+
+  val searchTitle: String = title.toLowerCase().toSnakeCase().stripAccents(),
 
   val description: String = "",
 
