@@ -10,7 +10,6 @@ import io.kotlintest.specs.StringSpec
 import org.mockito.ArgumentMatchers
 import org.mockito.Mockito
 import org.mockito.Mockito.`when`
-import org.mockito.Mockito.any
 
 class CreateCategoryTest : StringSpec() {
 

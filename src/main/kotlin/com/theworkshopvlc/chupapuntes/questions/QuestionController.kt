@@ -61,7 +61,7 @@ class QuestionController(
     @RequestBody question: QuestionRequest,
     principal: Principal
   ): ResponseEntity<*> {
-    val result = createQuestion.execute(question, principal)
+    val result = createQuestion.execute(question, principal.name)
     return when (result) {
       is QuestionValidationResults.Success -> ResponseEntity
         .status(HttpStatus.CREATED)

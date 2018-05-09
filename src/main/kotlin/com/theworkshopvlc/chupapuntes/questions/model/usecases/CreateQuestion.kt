@@ -1,15 +1,14 @@
 package com.theworkshopvlc.chupapuntes.questions.model.usecases
 
-import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationResults
 import com.theworkshopvlc.chupapuntes.categories.persistence.ICategoriesDAO
 import com.theworkshopvlc.chupapuntes.extensions.anyIsNull
 import com.theworkshopvlc.chupapuntes.questions.model.entities.Question
 import com.theworkshopvlc.chupapuntes.questions.model.entities.QuestionRequest
 import com.theworkshopvlc.chupapuntes.questions.model.entities.toEntity
+import com.theworkshopvlc.chupapuntes.questions.model.errors.QuestionValidationResults
 import com.theworkshopvlc.chupapuntes.questions.persistence.IQuestionsDAO
 import com.theworkshopvlc.chupapuntes.users.persistence.IUserDAO
 import org.springframework.stereotype.Component
-import java.security.Principal
 
 @Component
 class CreateQuestion(
@@ -18,7 +17,7 @@ class CreateQuestion(
   private val userDao: IUserDAO
 ) {
 
-  fun execute(question: QuestionRequest, principal: Principal): QuestionValidationResults {
+  fun execute(question: QuestionRequest, username: String): QuestionValidationResults {
     val questionEntity = question.toEntity()
     val validationResult = validateQuestion(questionEntity)
 
@@ -31,7 +30,7 @@ class CreateQuestion(
       val questionEntityWithCategories = validationResult.question
         .copy(
           categories = categories.filterNotNull().toSet(),
-          author = userDao.findByUsername(principal.name)!!
+          author = userDao.findByUsername(username)!!
         )
       dao.save(questionEntityWithCategories)
 
